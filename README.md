@@ -1,16 +1,18 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## AI Text Summarizer
+🔗 **Live Demo:** https://mini-ai-psi.vercel.app/
+💻 **Tech:** Python, Gemini AI API, Tailwind, CSS, HTML
 
-Currently, two official plugins are available:
+An AI-powered summarization tool that condenses long-form text into 
+clear, concise summaries. Built with Python and integrated with 
+Gemini AI for natural language understanding and generation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Features
+- Fast, accurate text summarization
+- Clean, simple interface for pasting/uploading text
+- Powered by Gemini AI
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### How it works
+1. Paste or input your text
+2. AI processes and analyzes the content
+3. Receive a concise summary in seconds
