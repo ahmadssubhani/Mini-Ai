@@ -1,0 +1,67 @@
+import React, { useState } from 'react';
+
+function App() {
+  const [url, setUrl] = useState('');
+  const [summary, setSummary] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSummarize = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSummary('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: url }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      setSummary(data.summary);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: '600px', margin: '50px auto', padding: '20px', fontFamily: 'Arial' }}>
+      <h2>Website Context Summarizer</h2>
+      <form onSubmit={handleSummarize} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+        <input
+          type="url"
+          placeholder="Enter website URL (https://...)"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+          style={{ flex: 1, padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
+        />
+        <button type="submit" disabled={loading} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+          {loading ? 'Summarizing...' : 'Summarize'}
+        </button>
+      </form>
+
+      {error && <div style={{ color: 'red', padding: '10px', background: '#ffe6e6' }}>{error}</div>}
+
+      {summary && (
+        <div style={{ padding: '15px', background: '#f4f4f4', borderRadius: '4px', whiteSpace: 'pre-line' }}>
+          <h3>Summary (5-6 Lines):</h3>
+          <p>{summary}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
